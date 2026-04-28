@@ -39,5 +39,6 @@ Since a web server was available, the website became the main target.
 
 Vulnerable Endpoint
 
+```bash
 item.php?id=2
-
+```
