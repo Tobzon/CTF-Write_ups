@@ -89,7 +89,6 @@ After bypassing the filters, the next step was enumerating tables and columns in
 Returned:
 ```bash
 users
-items
 ```
 
 🛡️ WAF Bypass
