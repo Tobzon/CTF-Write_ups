@@ -25,8 +25,9 @@ The room provides a realistic beginner-friendly scenario where weak web security
 
 The first step was identifying exposed services on the machine using **Nmap**.
 
--bash
+```bash
 nmap -sV -p- TARGET_IP
+```
 Open Ports
 Port	Service
 22	SSH
